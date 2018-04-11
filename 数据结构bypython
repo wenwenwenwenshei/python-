@@ -1,0 +1,71 @@
+#!/usr/bin/python
+#-*-coding:utf-8 -*-
+#创建的链表可以理解为：第一个节点的后继为None
+#然后不断让新的node指响已经被联入的节点
+class node:
+    def __init__(self,initdata):
+        self.data=initdata
+        self.next=None
+    def getData(self):
+        return self.data
+    def getNext(self):
+        return self.next
+    def setNext(self,nextnode):
+        self.next=nextnode
+
+class UnorderedList:
+    def __init__(self):
+        self.head=None
+
+    def add(self,item):
+        temp=node(item)
+        temp.setNext(self.head)
+        self.head=temp
+
+    def size(self):
+        count = 0
+        current = self.head
+        while current != None:
+            count +=1
+            current = current.getNext()
+        return count
+
+    def search(self,item):
+        current =self.head
+        found = False
+        while current != None and not found:
+            if current.getData() == item:
+                found = True
+            else:
+                current = current.getNext()
+        return found
+
+    def remove(self,item):
+        #关键在于这个previous，因为整个链表第一个压进去的的后继是
+        #None，压进去的最后一个节点无前驱，因此previous就是来解决
+        #最后压进去的那个节点的前驱问题的
+        current =self.head
+        previous = None
+        found = False
+        while  not found:
+            if current.getData()==item:
+                 found = True
+            else:
+                previous = current
+                current=current.getNext()
+        if previous ==None:
+            self.head=current.getNext()
+        else:
+             previous.setNext(current.getNext())
+
+myList = UnorderedList()
+myList.add(31)
+myList.add(77)
+myList.add(17)
+myList.add(93)
+myList.add(26)
+myList.add(54)
+print(myList.search(17))
+myList.remove(54)
+print(myList.search(54))
+
