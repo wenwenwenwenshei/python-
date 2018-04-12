@@ -1,0 +1,78 @@
+#!user/bin/python
+# -*-coding:utf-8 -*-
+##建里二叉树，二叉树插入左右节点
+#二叉树的前序遍利
+#二叉树的中序遍历
+#二叉树的h后序遍历
+class binarytree:
+    def __init__(self,rootobj):
+        self.key=rootobj
+        self.leftChild=None
+        self.rightChild=None
+
+    def getRootVal(self):
+        return self.key
+
+    def getRightChild(self):
+        return self.rightChild
+
+    def getLeftChild(self):
+        return self.leftChild
+
+    def setRootVal(self,obj):
+        self.key=obj
+
+    def insertLeft(self,newnode):
+        t=binarytree(newnode)
+        tmp=self
+        while tmp.leftChild!=None:
+            tmp = tmp.leftChild
+        tmp.leftChild = t
+
+
+    def insertRight(self,newnode):
+        t=binarytree(newnode)
+        tmp=self
+        while tmp.rightChild!=None:
+            tmp = tmp.rightChild
+        tmp.rightChild = t
+
+
+
+    def preorder(self):
+        print self.key
+        if self.leftChild:
+            self.leftChild.preorder()
+        if self.rightChild:
+            self.rightChild.preorder()
+
+    def inorder(self):
+        if self.leftChild:
+            self.leftChild.inorder()
+        print self.key
+        if self.rightChild:
+            self.rightChild.inorder()
+
+    def postorder(self):
+        if self.leftChild:
+            self.leftChild.postorder()
+        if self.rightChild:
+            self.rightChild.postorder()
+        print self.key
+
+r=binarytree('a')
+print r.getRootVal()
+print r.getLeftChild()
+print r.getRightChild()
+r.insertLeft('b')
+r.insertLeft('e')
+r.insertRight('f')
+r.insertRight('g')
+print '——前序遍历——'
+print r.preorder()
+print '——中序遍里——'
+print r.inorder()
+print '——后序遍里——'
+print r.postorder()
+# print r.getLeftChild().getRootVal()
+# print r.getLeftChild().getLeftChild().getRootVal()
