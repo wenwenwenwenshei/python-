@@ -1,0 +1,12 @@
+def directinsert(alist):
+    for  i in range(len(alist)-1):
+        min = i
+        for j in range(len(alist)-1,i,-1):
+            if alist[j]<alist[min]:
+                min = j
+        alist[min],alist[i] = alist[i],alist[min]
+
+    return alist
+
+a=[9,10,1,2,4]
+print directinsert(a)
