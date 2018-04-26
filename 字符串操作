@@ -1,0 +1,25 @@
+# 实现一个函数，它的作用是接受一个字符串输入，输出去除一些重复字符后的字符串
+
+def delete_reoccurring_chars(string):
+    """Return the string after deduplication.
+
+    >>>delete_reoccurring_chars('metasotaaaa')
+    'metasota'
+    >>>delete_reoccurring_chars('mmeettaassoottaa')
+    'metasota'
+    >>>delete_reoccurring_chars('metasota')
+    'metasota'
+    >>>delete_reoccurring_chars('')
+    ''
+    """
+    l = len(string)
+    result = []
+    flag = ''
+    for i in range(l):
+        if flag == string[i]:
+            continue
+        else:
+            result.append(string[i])
+            flag = string[i]
+    # your codes here
+    return ''.join(result)
