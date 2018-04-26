@@ -1,0 +1,20 @@
+# 实现一个函数，输入是字符串，去掉字符串两端的空白字符，并将字符串中间的连续空白字符转换成一个空白字符，例子如下：输入为，"  a   bbc  "，输出为，"a bbc"
+def foo(string):
+    string = string.strip()
+    result = []
+    flag = 0
+    for i in range(len(string)):
+        if string[i] != " ":
+            result.append(string[i])
+            flag = 0
+        if string[i] == " " and flag == 0:
+            result.append(string[i])
+            flag = 1
+
+    return ''.join(result)
+
+
+print(foo("  a  bb c  "))
+print(foo("     "))
+print(foo("a     b"))
+print(foo("  a   "))
