@@ -1,0 +1,25 @@
+
+# 1对应字母a，2对应字母b，3对应字母c，...，26对应字母z，给定一个数字字符串，字符串元素都是1到9这些字符，如"194726"，1对应字母a，9对应字母i，19对应字母s，4对应字母d，但是94没有对应字母，47也没有，72也没有。最后要求给出数字字符串能够转换成的所有对应字母字符串的可能性的数量。
+# 输入为，"123"，返回为3；输入为空字符串，返回0；输入为"33333"，返回1；输入为"1111"，返回5
+def backtrack(string, index):
+    l = len(string)
+    i = index
+    count = 0
+    if i < l:
+        count += backtrack(string, i + 1)
+        if i + 2 <= l:
+            temp = int(string[i:i + 2])
+            if temp <= 26:
+                count += backtrack(string, i + 2)
+            else:
+                return count
+        return count
+
+    else:
+        return count + 1
+
+
+print(backtrack("33333", 0))
+print(backtrack("123", 0))
+print(backtrack("333", 0))
+print(backtrack("194726", 0))
